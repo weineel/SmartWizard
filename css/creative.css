@@ -1,0 +1,298 @@
+/*!
+ * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    /*font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;*/
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+    color:#4e4e4e;
+    line-height: 22px;
+    webkit-tap-highlight-color: #222;
+}
+
+hr {
+    max-width: 50px;
+    border-color: #f05f40;
+    border-width: 3px;
+}
+hr.light {
+    border-color: #f05f40;
+}
+
+a {
+    color: #0da4d3;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+a:hover,
+a:focus {
+    color: #333;
+}
+
+p {
+    margin-bottom: 20px;
+    /*font-size: 16px;*/
+    line-height: 1.5;
+}
+
+.bg-primary {
+    background-color: #f05f40;
+}
+.bg-dark {
+    color: #fff;
+    background-color: #222;
+}
+.bg-white {
+    color: #0da4d3;
+    background-color: #fff;
+}
+.bg-secondary {
+    background-image: linear-gradient(to top, #fff1e1 0%, white 100%);
+}
+
+.text-faded {
+    color: rgba(255,255,255,.7);
+}
+
+section {
+    padding: 30px 0;
+}
+
+aside {
+    padding: 50px 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+/* Top Navigation */
+.navbar-default {
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 0 20px;
+    padding-bottom: 0;
+    width: 100%;
+    border-color: transparent;
+    background-color: transparent;        
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+    z-index: 10001;
+}
+.navbar-default .navbar-header .navbar-brand {
+    /*display: none;*/
+    font-size: 2em;
+    font-weight: 300;
+    color: #0da4d3;
+}
+
+.navbar-default .navbar-header .navbar-brand:hover,
+.navbar-default .navbar-header .navbar-brand:focus {
+    color: #0da4d3;
+}
+
+.navbar-default .nav > li>a,
+.navbar-default .nav> li>a:focus {
+    font-weight: 300;
+    color: #fff; 
+    outline: none;
+}
+
+.navbar-default .nav > li>a:hover,
+.navbar-default .nav>li>a:focus:hover {
+    color: #ccc;
+}
+
+.navbar-default .nav > li.active>a,
+.navbar-default .nav>li.active>a:focus {
+    color: #CCC;
+    background-color: transparent;
+}
+
+.navbar-default .nav > li.active>a:hover,
+.navbar-default .nav>li.active>a:focus:hover {
+    background-color: transparent;
+}
+
+.navbar-default.affix {
+    border-color: transparent;
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+}
+.navbar-default.affix .navbar-header .navbar-brand {
+    color: #0da4d3;
+}
+.navbar-default.affix .navbar-header .navbar-brand:hover,
+.navbar-default.affix .navbar-header .navbar-brand:focus {
+    color: #0da4d3;
+}
+
+.navbar-default.affix .nav > li>a,
+.navbar-default.affix .nav> li>a:focus {
+    font-weight: 300;
+    color: #222; 
+    outline: none;
+}
+
+.navbar-default.affix .nav > li>a:hover,
+.navbar-default.affix .nav>li>a:focus:hover {
+    color: #0da4d3;
+}
+
+.navbar-default.affix .nav > li.active>a,
+.navbar-default.affix .nav>li.active>a:focus {
+    color: #0da4d3;
+}
+
+
+@media(max-width:768px) {
+    .navbar-default.affix .navbar-header .navbar-brand {
+        font-size: 2em;
+    }
+}
+
+header {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    text-align: center;
+    color: #fff;
+    background-color: #0da4d3;
+    /*background-image: url(../images/500px-Prime-954841152.jpg);*/
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+header .header-content {
+    position: relative;
+    width: 100%;
+    padding: 100px 15px;
+    text-align: center;
+}
+
+header .header-content .header-content-inner h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    /*text-transform: uppercase;*/
+    font-weight: 300;
+    /*color: #0da4d3;*/
+    /*text-shadow: rgb(255, 255, 255) 0px 0px 10px;*/
+}
+
+header .header-content .header-content-inner h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    /*text-transform: uppercase;*/
+    font-weight: 300;
+    color: #fff;
+    /*text-shadow: rgb(255, 255, 255) 0px 0px 10px;*/   
+}
+
+header .header-content .header-content-inner hr {
+    margin: 30px auto;
+}
+
+header .header-content .header-content-inner p {
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 1.6;
+    /*font-weight: 300;*/
+    color: #FFF;
+    /*text-shadow: rgb(255, 255, 255) 0px 0px 10px;*/
+}
+header .header-content .header-content-inner a{
+    text-decoration: underline;
+    color: #FFF;
+}
+
+
+header .header-content .header-content-inner {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1000px;
+}
+
+@media(min-width:768px) {
+    header {
+        min-height: 100%;
+    }
+}
+
+@media(max-width:768px) {
+
+}
+
+.section-heading {
+    margin-top: 0;
+}
+
+.smart-list{
+    list-style-type: none;
+    
+}
+.smart-list > li{
+  text-align: left;  
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+.smart-list > li:before{
+  content: "\f00c";
+  display: table;
+  font-family: FontAwesome;
+  text-decoration: inherit; 
+  position: absolute; 
+  top: 0px;  
+  left: -5px;
+  color: #f05f40;
+  text-align: center;
+  z-index: 100;
+}
+
+.text-primary {
+    color: #f05f40;
+}
+
+.no-gutter > [class*=col-] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.btn-special {
+    color: #0da4d3 !important;
+    font-size: 1.3em;
+    text-align: center;
+    text-decoration: none !important;
+    padding: 5px 20px;
+    /*background-color: #fff !important;*/
+    border-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    border-radius: 15px; 
+}
+
+.btn-default {
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
