@@ -1,4 +1,4 @@
-/*! 
+/*!
  * SmartWizard v4.2.2
  * The awesome jQuery step wizard plugin with Bootstrap support
  * http://www.techlaboratory.net/smartwizard
@@ -14,42 +14,42 @@
     "use strict";
     // Default options
     var defaults = {
-            selected: 0,  // Initial selected step, 0 = first step
-            keyNavigation: true, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
-            autoAdjustHeight: true, // Automatically adjust content height
-            cycleSteps: false, // Allows to cycle the navigation of steps
-            backButtonSupport: true, // Enable the back button support
-            useURLhash: true, // Enable selection of the step based on url hash
-            showStepURLhash: true, // Show url hash based on step
-            lang: {  // Language variables for button
-                next: 'Next',
-                previous: 'Previous'
-            },
-            toolbarSettings: {
-                toolbarPosition: 'bottom', // none, top, bottom, both
-                toolbarButtonPosition: 'right', // left, right
-                showNextButton: true, // show/hide a Next button
-                showPreviousButton: true, // show/hide a Previous button
-                toolbarExtraButtons: [] // Extra buttons to show on toolbar, array of jQuery input/buttons elements
-            },
-            anchorSettings: {
-                anchorClickable: true, // Enable/Disable anchor navigation
-                enableAllAnchors: false, // Activates all anchors clickable all times
-                markDoneStep: true, // Add done css
-                markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
-                removeDoneStepOnNavigateBack: false, // While navigate back done step after active step will be cleared
-                enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
-            },
-            contentURL: null, // content url, Enables Ajax content loading. Can also set as data data-content-url on anchor
-            contentCache: true, // cache step contents, if false content is fetched always from ajax url
-            ajaxSettings: {}, // Ajax extra settings
-            disabledSteps: [], // Array Steps disabled
-            errorSteps: [], // Highlight step with errors
-            hiddenSteps: [], // Hidden steps
-            theme: 'default', // theme for the wizard, related css need to include for other than default theme
-            transitionEffect: 'none', // Effect on navigation, none/slide/fade
-            transitionSpeed: '400'
-        };
+        selected: 0,  // Initial selected step, 0 = first step
+        keyNavigation: true, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
+        autoAdjustHeight: true, // Automatically adjust content height
+        cycleSteps: false, // Allows to cycle the navigation of steps
+        backButtonSupport: true, // Enable the back button support
+        useURLhash: true, // Enable selection of the step based on url hash
+        showStepURLhash: true, // Show url hash based on step
+        lang: {  // Language variables for button
+            next: 'Next',
+            previous: 'Previous'
+        },
+        toolbarSettings: {
+            toolbarPosition: 'bottom', // none, top, bottom, both
+            toolbarButtonPosition: 'right', // left, right
+            showNextButton: true, // show/hide a Next button
+            showPreviousButton: true, // show/hide a Previous button
+            toolbarExtraButtons: [] // Extra buttons to show on toolbar, array of jQuery input/buttons elements
+        },
+        anchorSettings: {
+            anchorClickable: true, // Enable/Disable anchor navigation
+            enableAllAnchors: false, // Activates all anchors clickable all times
+            markDoneStep: true, // Add done css
+            markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
+            removeDoneStepOnNavigateBack: false, // While navigate back done step after active step will be cleared
+            enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+        },
+        contentURL: null, // content url, Enables Ajax content loading. Can also set as data data-content-url on anchor
+        contentCache: true, // cache step contents, if false content is fetched always from ajax url
+        ajaxSettings: {}, // Ajax extra settings
+        disabledSteps: [], // Array Steps disabled
+        errorSteps: [], // Highlight step with errors
+        hiddenSteps: [], // Hidden steps
+        theme: 'default', // theme for the wizard, related css need to include for other than default theme
+        transitionEffect: 'none', // Effect on navigation, none/slide/fade
+        transitionSpeed: '400'
+    };
 
     // The plugin constructor
     function SmartWizard(element, options) {
@@ -127,15 +127,15 @@
             }
             // Error steps
             if(this.options.errorSteps && this.options.errorSteps.length > 0){
-              $.each(this.options.errorSteps, function(i, n){
-                mi.steps.eq(n).parent('li').addClass('danger');
-              });
+                $.each(this.options.errorSteps, function(i, n){
+                    mi.steps.eq(n).parent('li').addClass('danger');
+                });
             }
             // Hidden steps
             if(this.options.hiddenSteps && this.options.hiddenSteps.length > 0){
-              $.each(this.options.hiddenSteps, function(i, n){
-                mi.steps.eq(n).parent('li').addClass('hidden');
-              });
+                $.each(this.options.hiddenSteps, function(i, n){
+                    mi.steps.eq(n).parent('li').addClass('hidden');
+                });
             }
 
             return true;
@@ -284,8 +284,8 @@
             }
 
             if(this.steps.length <= si){
-              if(!this.options.cycleSteps){ return false; }
-              si = 0;
+                if(!this.options.cycleSteps){ return false; }
+                si = 0;
             }
             this._showStep(si);
             return true;
@@ -300,8 +300,8 @@
                 }
             }
             if(0 > si){
-              if(!this.options.cycleSteps){ return false; }
-              si = this.steps.length - 1;
+                if(!this.options.cycleSteps){ return false; }
+                si = this.steps.length - 1;
             }
             this._showStep(si);
             return true;
@@ -330,39 +330,52 @@
                 stepDirection = (this.current_index < idx) ? "forward" : "backward";
             }
 
-            // Trigger "leaveStep" event
-            if(this.current_index !== null && this._triggerEvent("leaveStep", [curTab, this.current_index, stepDirection]) === false){ return false; }
+            // next
+            //todo: 这边是临界区需要锁。
+            var _asyncTransitPage = function (shouldTransit) {
+                if (shouldTransit) {
+                    if(contentURL && contentURL.length > 0 && (!elm.data('has-content') || !this.options.contentCache)){
+                        // Get ajax content and then show step
+                        var selPage = (elm.length>0) ? $(elm.attr("href"),this.main) : null;
 
-            if(contentURL && contentURL.length > 0 && (!elm.data('has-content') || !this.options.contentCache)){
-                // Get ajax content and then show step
-                var selPage = (elm.length>0) ? $(elm.attr("href"),this.main) : null;
+                        var ajaxSettings = $.extend(true, {}, {
+                            url: contentURL,
+                            type: "POST",
+                            data: ({step_number : idx}),
+                            dataType: "text",
+                            beforeSend: function(){
+                                elm.parent('li').addClass('loading');
+                            },
+                            error: function(jqXHR, status, message){
+                                elm.parent('li').removeClass('loading');
+                                $.error(message);
+                            },
+                            success: function(res){
+                                if(res && res.length > 0){
+                                    elm.data('has-content',true);
+                                    selPage.html(res);
+                                }
+                                elm.parent('li').removeClass('loading');
+                                mi._transitPage(idx);
+                            }
+                        }, this.options.ajaxSettings);
 
-                var ajaxSettings = $.extend(true, {}, {
-                    url: contentURL,
-                    type: "POST",
-                    data: ({step_number : idx}),
-                    dataType: "text",
-                    beforeSend: function(){
-                        elm.parent('li').addClass('loading');
-                    },
-                    error: function(jqXHR, status, message){
-                        elm.parent('li').removeClass('loading');
-                        $.error(message);
-                    },
-                    success: function(res){
-                        if(res && res.length > 0){
-                            elm.data('has-content',true);
-                            selPage.html(res);
-                        }
-                        elm.parent('li').removeClass('loading');
-                        mi._transitPage(idx);
+                        $.ajax(ajaxSettings);
+                    }else{
+                        // Show step
+                        this._transitPage(idx);
                     }
-                }, this.options.ajaxSettings);
+                }
+            }.bind(this)
 
-                $.ajax(ajaxSettings);
-            }else{
-                // Show step
-                this._transitPage(idx);
+            // Trigger "leaveStep" event
+            var shouldLeaveStep = this._triggerEvent("leaveStep", [curTab, this.current_index, stepDirection, _asyncTransitPage])
+
+            // 同步时依赖返回值
+            _asyncTransitPage(shouldLeaveStep);
+
+            if (this.current_index == null && shouldLeaveStep == undefined) {
+                _asyncTransitPage(true);
             }
             return true;
         },
@@ -446,14 +459,14 @@
             // Previous/Next Button enable/disable based on step
             if(!this.options.cycleSteps){
                 if(0 >= idx){
-                  $('.sw-btn-prev', this.main).addClass("disabled");
+                    $('.sw-btn-prev', this.main).addClass("disabled");
                 }else{
-                  $('.sw-btn-prev', this.main).removeClass("disabled");
+                    $('.sw-btn-prev', this.main).removeClass("disabled");
                 }
                 if((this.steps.length-1) <= idx){
-                  $('.sw-btn-next', this.main).addClass("disabled");
+                    $('.sw-btn-next', this.main).addClass("disabled");
                 }else{
-                  $('.sw-btn-next', this.main).removeClass("disabled");
+                    $('.sw-btn-next', this.main).removeClass("disabled");
                 }
             }
             return true;
